@@ -9,26 +9,32 @@ import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/routes/routes.dart';
 import 'package:thimar_app/core/utils/app_spaces.dart';
 import 'package:thimar_app/core/utils/app_theme.dart';
-import 'package:thimar_app/core/utils/extensions.dart';
 import 'package:thimar_app/core/utils/unfucs.dart';
 import 'package:thimar_app/gen/assets.gen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController phoneController = TextEditingController();
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController townController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    phoneController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
+    phoneController.dispose();
+    nameController.dispose();
+    townController.dispose();
     super.dispose();
   }
 
@@ -42,11 +48,28 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomLogo(
-                  lebal: 'مرحبا بك مرة أخرى',
-                  subLebel: 'يمكنك تسجيل الدخول الأن',
+                CustomLogo(
+                  lebal: "مرحبا بك مرة أخرى",
+                  subLebel: "يمكنك تسجيل حساب جديد الأن",
                 ),
-                AppSpaces.getVerticalSpace(28),
+                AppSpaces.getVerticalSpace(24),
+                CustomTextField(
+                  hintText: "اسم المستخدم",
+                  prefixIcon: SvgPicture.asset(Assets.svgs.user),
+                  controller: nameController,
+                  keyboardType: TextInputType.name,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'يرجى إدخال الاسم';
+                    }
+                    if (value.length < 3) {
+                      return 'يجب أن يكون الاسم 3 أحرف على الأقل';
+                    }
+                    return null;
+                  },
+                ),
+                AppSpaces.getVerticalSpace(16),
                 Row(
                   children: [
                     PhoneCountryPicker(),
@@ -72,6 +95,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 AppSpaces.getVerticalSpace(16),
                 CustomTextField(
+                  hintText: "المدينة",
+                  prefixIcon: SvgPicture.asset(Assets.svgs.flag),
+                  controller: townController,
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'يرجى إدخال المدينة';
+                    }
+                    return null;
+                  },
+                ),
+                AppSpaces.getVerticalSpace(16),
+                CustomTextField(
                   hintText: "كلمة المرور",
                   prefixIcon: SvgPicture.asset(Assets.svgs.unlock),
                   obscureText: true,
@@ -88,22 +125,32 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                AppSpaces.getVerticalSpace(15),
-                TextButton(
-                  onPressed: () {
-                    AppRoutesFunc.push(NamedRoutes.resetPassword);
+                AppSpaces.getVerticalSpace(16),
+                CustomTextField(
+                  hintText: "كلمة المرور",
+                  prefixIcon: SvgPicture.asset(Assets.svgs.unlock),
+                  obscureText: true,
+                  controller: confirmPasswordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        value != passwordController.text) {
+                      return 'كلمة المرور غير متطابقة';
+                    }
+
+                    return null;
                   },
-                  child: Text(
-                    'نسيت كلمة المرور ؟',
-                    style: AppThemes.textLightTheme.labelMedium,
-                  ),
-                ).toBottomEnd,
-                AppSpaces.getVerticalSpace(15),
+                ),
+                AppSpaces.getVerticalSpace(24),
                 CustomElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    // if (_formKey.currentState!.validate()) {
+                    AppRoutesFunc.push(NamedRoutes.verify);
+                    // }
                   },
-                  text: 'تسجيل الدخول',
+                  text: "تسجيل",
                 ),
                 AppSpaces.getVerticalSpace(45),
                 Center(
@@ -111,17 +158,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'ليس لديك حساب ؟',
+                        'لديك حساب بالفعل ؟',
                         style: AppThemes.textLightTheme.labelMedium!.copyWith(
                           color: AppThemes.lightTheme.primaryColor,
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          AppRoutesFunc.push(NamedRoutes.register);
+                          AppRoutesFunc.pop();
                         },
                         child: Text(
-                          'تسجيل الأن',
+                          'تسجيل الدخول',
                           style: AppThemes.textLightTheme.labelLarge,
                         ),
                       ),

@@ -5,15 +5,16 @@ import 'package:thimar_app/core/routes/app_routes.dart';
 import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/utils/app_theme.dart';
 
-
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-    statusBarBrightness: Brightness.light,
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          builder: (context, child) {
+            return Directionality(textDirection: TextDirection.rtl, child: child!);
+          },
           title: 'Thimar',
           themeMode: ThemeMode.light,
           theme: AppThemes.lightTheme,

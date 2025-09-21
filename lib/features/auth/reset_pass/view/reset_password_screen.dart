@@ -9,29 +9,22 @@ import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/routes/routes.dart';
 import 'package:thimar_app/core/utils/app_spaces.dart';
 import 'package:thimar_app/core/utils/app_theme.dart';
-import 'package:thimar_app/core/utils/extensions.dart';
 import 'package:thimar_app/core/utils/unfucs.dart';
 import 'package:thimar_app/gen/assets.gen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    phoneController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -40,37 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Scaffold(
           body: BackgroundContainer(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomLogo(
-                  lebal: 'مرحبا بك مرة أخرى',
-                  subLebel: 'يمكنك تسجيل الدخول الأن',
+                CustomLogo(
+                  lebal: "نسيت كلمة المرور",
+                  subLebel: "أدخل رقم الجوال المرتبط بحسابك",
                 ),
-                AppSpaces.getVerticalSpace(28),
-                Row(
-                  children: [
-                    PhoneCountryPicker(),
-                    AppSpaces.getHorizontalSpace(9),
-                    Expanded(
-                      child: CustomTextField(
-                        maxLength: 10,
-                        hintText: 'رقم الجوال',
-                        prefixIcon: SvgPicture.asset(Assets.svgs.phone),
-                        keyboardType: TextInputType.number,
-                        controller: phoneController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال رقم الجوال';
-                          } else if (value.length < 10) {
-                            return 'يجب أن يكون رقم الجوال 10 أرقام على الأقل';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                AppSpaces.getVerticalSpace(16),
+                AppSpaces.getVerticalSpace(24),
                 CustomTextField(
                   hintText: "كلمة المرور",
                   prefixIcon: SvgPicture.asset(Assets.svgs.unlock),
@@ -88,22 +56,32 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                AppSpaces.getVerticalSpace(15),
-                TextButton(
-                  onPressed: () {
-                    AppRoutesFunc.push(NamedRoutes.resetPassword);
+                AppSpaces.getVerticalSpace(16),
+                CustomTextField(
+                  hintText: "كلمة المرور",
+                  prefixIcon: SvgPicture.asset(Assets.svgs.unlock),
+                  obscureText: true,
+                  controller: confirmPasswordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  onChanged: (value) {},
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        value != passwordController.text) {
+                      return 'كلمة المرور غير متطابقة';
+                    }
+
+                    return null;
                   },
-                  child: Text(
-                    'نسيت كلمة المرور ؟',
-                    style: AppThemes.textLightTheme.labelMedium,
-                  ),
-                ).toBottomEnd,
-                AppSpaces.getVerticalSpace(15),
+                ),
+                AppSpaces.getVerticalSpace(24),
                 CustomElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    // if (_formKey.currentState!.validate()) {
+                    AppRoutesFunc.push(NamedRoutes.login);
+                    // }
                   },
-                  text: 'تسجيل الدخول',
+                  text: "تغيير كلمة المرور",
                 ),
                 AppSpaces.getVerticalSpace(45),
                 Center(
@@ -111,17 +89,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'ليس لديك حساب ؟',
+                        'لديك حساب بالفعل ؟',
                         style: AppThemes.textLightTheme.labelMedium!.copyWith(
                           color: AppThemes.lightTheme.primaryColor,
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          AppRoutesFunc.push(NamedRoutes.register);
+                          AppRoutesFunc.pop();
                         },
                         child: Text(
-                          'تسجيل الأن',
+                          'تسجيل الدخول',
                           style: AppThemes.textLightTheme.labelLarge,
                         ),
                       ),

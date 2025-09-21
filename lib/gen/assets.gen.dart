@@ -34,11 +34,26 @@ class $AssetsImagesGen {
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
+  /// File path: assets/svgs/flag.svg
+  String get flag => 'assets/svgs/flag.svg';
+
   /// File path: assets/svgs/logo.svg
   String get logo => 'assets/svgs/logo.svg';
 
+  /// File path: assets/svgs/phone.svg
+  String get phone => 'assets/svgs/phone.svg';
+
+  /// File path: assets/svgs/sud.svg
+  String get sud => 'assets/svgs/sud.svg';
+
+  /// File path: assets/svgs/unlock.svg
+  String get unlock => 'assets/svgs/unlock.svg';
+
+  /// File path: assets/svgs/user.svg
+  String get user => 'assets/svgs/user.svg';
+
   /// List of all assets
-  List<String> get values => [logo];
+  List<String> get values => [flag, logo, phone, sud, unlock, user];
 }
 
 class Assets {

@@ -1,5 +1,7 @@
-lib/core
 
+lib/core/routes
+lib/core/services
+lib/core/utils
 # Miscellaneous
 *.class
 *.log

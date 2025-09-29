@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thimar_app/core/utils/app_spaces.dart';
+import 'package:thimar_app/features/home/widgets/products/product_item.dart';
 import 'package:thimar_app/features/home/widgets/search_field/search_field.dart';
 import 'package:thimar_app/features/home/widgets/sliders/slider_item.dart';
 import 'package:thimar_app/gen/assets.gen.dart';
@@ -82,14 +83,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SearchField(),
-          SliderItem(),
-          AppSpaces.getVerticalSpace(29),
-          CategoryItem(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SearchField(),
+            SliderItem(),
+            AppSpaces.getVerticalSpace(29),
+            CategoryItem(),
+            AppSpaces.getVerticalSpace(29),
+            ProductItem(),
+          ],
+        ),
       ),
     );
   }

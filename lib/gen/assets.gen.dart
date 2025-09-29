@@ -34,14 +34,50 @@ class $AssetsImagesGen {
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
+  /// File path: assets/svgs/Home.svg
+  String get home => 'assets/svgs/Home.svg';
+
+  /// File path: assets/svgs/Home_filled.svg
+  String get homeFilled => 'assets/svgs/Home_filled.svg';
+
+  /// File path: assets/svgs/Note.svg
+  String get note => 'assets/svgs/Note.svg';
+
+  /// File path: assets/svgs/Note_filled.svg
+  String get noteFilled => 'assets/svgs/Note_filled.svg';
+
+  /// File path: assets/svgs/Notification.svg
+  String get notification => 'assets/svgs/Notification.svg';
+
+  /// File path: assets/svgs/Notification_filled.svg
+  String get notificationFilled => 'assets/svgs/Notification_filled.svg';
+
+  /// File path: assets/svgs/bag.svg
+  String get bag => 'assets/svgs/bag.svg';
+
   /// File path: assets/svgs/flag.svg
   String get flag => 'assets/svgs/flag.svg';
+
+  /// File path: assets/svgs/heart.svg
+  String get heart => 'assets/svgs/heart.svg';
+
+  /// File path: assets/svgs/heart_filled.svg
+  String get heartFilled => 'assets/svgs/heart_filled.svg';
 
   /// File path: assets/svgs/logo.svg
   String get logo => 'assets/svgs/logo.svg';
 
   /// File path: assets/svgs/phone.svg
   String get phone => 'assets/svgs/phone.svg';
+
+  /// File path: assets/svgs/profile.svg
+  String get profile => 'assets/svgs/profile.svg';
+
+  /// File path: assets/svgs/profile_filled.svg
+  String get profileFilled => 'assets/svgs/profile_filled.svg';
+
+  /// File path: assets/svgs/search.svg
+  String get search => 'assets/svgs/search.svg';
 
   /// File path: assets/svgs/sud.svg
   String get sud => 'assets/svgs/sud.svg';
@@ -53,7 +89,26 @@ class $AssetsSvgsGen {
   String get user => 'assets/svgs/user.svg';
 
   /// List of all assets
-  List<String> get values => [flag, logo, phone, sud, unlock, user];
+  List<String> get values => [
+    home,
+    homeFilled,
+    note,
+    noteFilled,
+    notification,
+    notificationFilled,
+    bag,
+    flag,
+    heart,
+    heartFilled,
+    logo,
+    phone,
+    profile,
+    profileFilled,
+    search,
+    sud,
+    unlock,
+    user,
+  ];
 }
 
 class Assets {

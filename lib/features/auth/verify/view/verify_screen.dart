@@ -9,6 +9,8 @@ import 'package:thimar_app/core/utils/app_spaces.dart';
 import 'package:thimar_app/core/utils/app_theme.dart';
 import 'package:thimar_app/core/local_widgets/pin_code.dart';
 
+import '../../../../core/routes/routes.dart';
+
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
 
@@ -105,7 +107,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      AppRoutesFunc.pop();
+                      AppRoutesFunc.replacement(NamedRoutes.login);
                     },
                     child: Text(
                       'تسجيل الدخول',

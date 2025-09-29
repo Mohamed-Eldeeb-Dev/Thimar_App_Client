@@ -4,7 +4,6 @@ import 'package:thimar_app/core/local_widgets/background_container.dart';
 import 'package:thimar_app/core/local_widgets/custom_elevated_button.dart';
 import 'package:thimar_app/core/local_widgets/custom_logo.dart';
 import 'package:thimar_app/core/local_widgets/custom_text_field.dart';
-import 'package:thimar_app/core/local_widgets/phone_country_picker.dart';
 import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/routes/routes.dart';
 import 'package:thimar_app/core/utils/app_spaces.dart';

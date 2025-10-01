@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       AppSpaces.getVerticalSpace(15),
                       TextButton(
                         onPressed: () {
-                          AppRoutesFunc.push(NamedRoutes.resetPassword);
+                          AppRoutesFunc.push(NamedRoutes.forgetPassword);
                         },
                         child: Text(
                           'نسيت كلمة المرور ؟',
@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ).toBottomEnd,
                       AppSpaces.getVerticalSpace(15),
                       CustomElevatedButton(
-                        onPressed: () {                      
+                        onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             context.read<LoginCubit>().login(
                               phone: phoneController.text,

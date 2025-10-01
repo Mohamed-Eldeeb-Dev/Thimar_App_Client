@@ -9,25 +9,28 @@ class PinCode extends StatelessWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    return PinCodeTextField(
-      animationCurve: Curves.easeIn,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      backgroundColor: Colors.white,
-      keyboardType: TextInputType.number,
-      appContext: context,
-      length: 4,
-      controller: controller,
-      pinTheme: PinTheme(
-        shape: PinCodeFieldShape.box,
-        borderRadius: BorderRadius.circular(18.r),
-        fieldHeight: 60.h,
-        fieldWidth: 71.w,
-        activeFillColor: Colors.white,
-        inactiveFillColor: Colors.white,
-        selectedFillColor: Colors.white,
-        activeColor: AppThemes.lightTheme.primaryColor,
-        inactiveColor: AppThemes.lightTheme.disabledColor,
-        selectedColor: AppThemes.lightTheme.primaryColor,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: PinCodeTextField(
+        animationCurve: Curves.easeIn,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        backgroundColor: Colors.white,
+        keyboardType: TextInputType.number,
+        appContext: context,
+        length: 4,
+        controller: controller,
+        pinTheme: PinTheme(
+          shape: PinCodeFieldShape.box,
+          borderRadius: BorderRadius.circular(18.r),
+          fieldHeight: 60.h,
+          fieldWidth: 71.w,
+          activeFillColor: Colors.white,
+          inactiveFillColor: Colors.white,
+          selectedFillColor: Colors.white,
+          activeColor: AppThemes.lightTheme.primaryColor,
+          inactiveColor: AppThemes.lightTheme.disabledColor,
+          selectedColor: AppThemes.lightTheme.primaryColor,
+        ),
       ),
     );
   }

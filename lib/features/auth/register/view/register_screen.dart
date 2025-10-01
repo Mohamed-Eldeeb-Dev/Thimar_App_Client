@@ -92,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           AppSpaces.getHorizontalSpace(9),
                           Expanded(
                             child: CustomTextField(
-                              maxLength: 10,
+                              maxLength: 13,
                               hintText: 'رقم الجوال',
                               prefixIcon: SvgPicture.asset(Assets.svgs.phone),
                               keyboardType: TextInputType.number,

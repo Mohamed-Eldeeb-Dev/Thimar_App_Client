@@ -55,7 +55,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       subLebel:
                           "أدخل الكود المكون من 4 أرقام المرسل علي رقم الجوال",
                       fontSize: 15,
-                      phoneNumber: "+9660548745",
+                      phoneNumber: "+${widget.phone}",
                       onChangePhoneNumber: () {
                         Navigator.pop(context);
                       },

@@ -35,7 +35,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               children: [
                 CustomLogo(
                   lebal: "نسيت كلمة المرور",
-                  subLebel: "أدخل رقم الجوال المرتبط بحسابك",
+                  subLebel: "أدخل كلمة المرور الجديدة",
                 ),
                 AppSpaces.getVerticalSpace(24),
                 CustomTextField(

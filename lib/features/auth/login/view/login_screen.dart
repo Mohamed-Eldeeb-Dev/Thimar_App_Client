@@ -119,20 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ).toBottomEnd,
                       AppSpaces.getVerticalSpace(15),
-
-                      // زر تسجيل الدخول
                       CustomElevatedButton(
                         onPressed: () {
-                          AppRoutesFunc.pushAndRemoveUntil(
-                            NamedRoutes.bottomNavigationBarView,
-                          );
-                          // if (state is LoginLoading) return;
-                          // if (_formKey.currentState!.validate()) {
-                          //   context.read<LoginCubit>().login(
-                          //     phone: phoneController.text,
-                          //     password: passwordController.text,
-                          // );
-                          // }
+                          if (state is LoginLoading) return;
+                          if (_formKey.currentState!.validate()) {
+                            context.read<LoginCubit>().login(
+                              phone: phoneController.text,
+                              password: passwordController.text,
+                            );
+                          }
                         },
                         text: state is LoginLoading
                             ? 'جارٍ تسجيل الدخول...'

@@ -65,7 +65,7 @@ class _CategoryItemState extends State<CategoryItem> {
 }
 
 class _CategoryItem extends StatelessWidget {
-  const _CategoryItem({super.key, required this.model});
+  const _CategoryItem({required this.model});
 
   final Data model;
   @override

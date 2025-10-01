@@ -1,10 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:thimar_app/core/utils/extensions.dart';
-import 'package:thimar_app/features/home/widgets/sliders/cubit/sliders_cubit.dart';
-
 import 'cubit/product_cubit.dart';
 
 class ProductItem extends StatefulWidget {
@@ -122,6 +118,7 @@ class _ProductItem extends StatelessWidget {
             model.title,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.bold,
+              fontSize: 20.sp,
               color: Theme.of(context).primaryColor,
             ),
           ),
@@ -139,6 +136,7 @@ class _ProductItem extends StatelessWidget {
                 '${model.price} ر.س',
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   fontWeight: FontWeight.bold,
+                  fontSize: 15.sp,
                   color: Theme.of(context).primaryColor,
                 ),
               ),

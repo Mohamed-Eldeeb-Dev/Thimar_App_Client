@@ -120,8 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ).toBottomEnd,
                       AppSpaces.getVerticalSpace(15),
                       CustomElevatedButton(
-                        onPressed: () {
-                          if (state is LoginLoading) return;
+                        onPressed: () {                      
                           if (_formKey.currentState!.validate()) {
                             context.read<LoginCubit>().login(
                               phone: phoneController.text,

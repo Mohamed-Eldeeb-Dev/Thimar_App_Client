@@ -52,6 +52,9 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/Notification_filled.svg
   String get notificationFilled => 'assets/svgs/Notification_filled.svg';
 
+  /// File path: assets/svgs/arrow_right.svg
+  String get arrowRight => 'assets/svgs/arrow_right.svg';
+
   /// File path: assets/svgs/bag.svg
   String get bag => 'assets/svgs/bag.svg';
 
@@ -60,6 +63,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/heart.svg
   String get heart => 'assets/svgs/heart.svg';
+
+  /// File path: assets/svgs/heart_empty.svg
+  String get heartEmpty => 'assets/svgs/heart_empty.svg';
 
   /// File path: assets/svgs/heart_filled.svg
   String get heartFilled => 'assets/svgs/heart_filled.svg';
@@ -96,9 +102,11 @@ class $AssetsSvgsGen {
     noteFilled,
     notification,
     notificationFilled,
+    arrowRight,
     bag,
     flag,
     heart,
+    heartEmpty,
     heartFilled,
     logo,
     phone,

@@ -97,7 +97,7 @@ class _SliderItemState extends State<SliderItem> {
 }
 
 class _SliderItem extends StatelessWidget {
-  const _SliderItem({super.key, required this.model});
+  _SliderItem({Key? key, required this.model}) : super(key: key);
 
   final SliderModel model;
   @override

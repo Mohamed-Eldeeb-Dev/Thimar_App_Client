@@ -27,7 +27,7 @@ class _RateItemState extends State<RateItem> {
           ).toStart,
           SizedBox(height: 8.h),
           SizedBox(
-            height: 100.h,
+            height: 110.h,
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return _rateItem(model: widget.model[index]);
@@ -52,18 +52,19 @@ class _rateItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
       width: 270.w,
-      height: 87.h,
+
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 6,
             offset: const Offset(0, 3),
-            blurStyle: BlurStyle.outer,
+            blurStyle: BlurStyle.solid,
           ),
         ],
       ),

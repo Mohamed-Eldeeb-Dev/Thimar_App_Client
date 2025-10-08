@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/routes/routes.dart';
-import 'cubit/product_cubit.dart';
+import 'package:thimar_app/models/product_model.dart';
 
 class ProductItem extends StatefulWidget {
-  const ProductItem({super.key});
-
+  const ProductItem({super.key, required this.list});
+  final List<Product> list;
   @override
   State<ProductItem> createState() => _ProductItemState();
 }
@@ -17,53 +16,40 @@ class _ProductItemState extends State<ProductItem> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProductCubit>(
-      create: (context) => ProductCubit()..getData(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Text(
-              "الأصناف",
-              textAlign: TextAlign.right,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 16.sp,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Text(
+            "الأصناف",
+            textAlign: TextAlign.right,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16.sp,
             ),
           ),
-          BlocBuilder<ProductCubit, ProductState>(
-            builder: (context, state) {
-              if (state is ProductLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is ProductSuccess) {
-                return GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10.h,
-                    crossAxisSpacing: 10.w,
-                    childAspectRatio: 0.7,
-                  ),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 10.h,
-                  ),
-                  children: List.generate(
-                    state.list.length,
-                    (index) => _ProductItem(model: state.list[index]),
-                  ),
-                );
-              } else {
-                return const Center(child: Text('No Data'));
-              }
-            },
+        ),
+        GridView(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10.h,
+            crossAxisSpacing: 10.w,
+            childAspectRatio: 0.7,
           ),
-        ],
-      ),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 10.h,
+          ),
+          children: List.generate(
+            widget.list.length,
+            (index) => _ProductItem(model: widget.list[index]),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -71,7 +57,7 @@ class _ProductItemState extends State<ProductItem> {
 class _ProductItem extends StatelessWidget {
   _ProductItem({Key? key, required this.model}) : super(key: key);
 
-  final Data model;
+  final Product model;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -1,20 +1,19 @@
-part of 'product_cubit.dart';
 
 class ProductModel {
-  late final List<Data> data;
+  late final List<Product> data;
   late final int userCartCount;
   late final num maxPrice;
   late final double minPrice;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
+    data = List.from(json['data']).map((e) => Product.fromJson(e)).toList();
     userCartCount = json['user_cart_count'] ?? 0;
     maxPrice = json['max_price'] ?? 0;
     minPrice = json['min_price'] ?? 0.0;
   }
 }
 
-class Data {
+class Product {
   late final int categoryId;
   late final int id;
   late final String title;
@@ -31,7 +30,7 @@ class Data {
   late final String mainImage;
   late final String createdAt;
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     categoryId = json['category_id'] ?? 0;
     id = json['id'] ?? 0;
     title = json['title'] ?? "";

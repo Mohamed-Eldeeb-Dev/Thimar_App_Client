@@ -17,7 +17,6 @@ class HomeCubit extends Cubit<HomeState> {
   void getSlider() async {
     emit(SlidersLoading());
     final response = await ServerGate.i.getFromServer(url: "sliders");
-
     if (response.success) {
       slidersModel = List.from(
         response.data['data'] ?? [],

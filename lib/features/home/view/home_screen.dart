@@ -20,6 +20,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -145,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     } else {
                       return ProductItem(
                         list:
-                            context.watch<HomeCubit>().productModel?.data ?? [],
+                            context.watch<HomeCubit>().productModel?.products ?? [],
                       );
                     }
                   },

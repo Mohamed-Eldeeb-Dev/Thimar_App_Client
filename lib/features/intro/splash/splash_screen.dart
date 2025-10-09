@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/routes/routes.dart';
 import 'package:thimar_app/gen/assets.gen.dart';
+import 'package:thimar_app/models/user_model.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,6 +26,9 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+
+    UserModel.i.get();
+
     logoController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 1000),
@@ -44,10 +48,12 @@ class _SplashScreenState extends State<SplashScreen>
 
     logoController.forward().then((_) {
       leavesController.forward();
-      
+
       _timer = Timer(Duration(seconds: 2), () {
         if (mounted) {
-          AppRoutesFunc.replacement(NamedRoutes.login);
+          UserModel.i.isAuth
+              ? AppRoutesFunc.replacement(NamedRoutes.bottomNavigationBarView)
+              : AppRoutesFunc.replacement(NamedRoutes.login);
         }
       });
     });

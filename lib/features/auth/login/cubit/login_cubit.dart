@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:thimar_app/core/services/server_gate.dart';
+import 'package:thimar_app/models/user_model.dart';
 
 part 'login_state.dart';
-part 'login_model.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
@@ -23,8 +23,11 @@ class LoginCubit extends Cubit<LoginState> {
       },
     );
     if (response.success) {
-      final loginModel = LoginModel.fromJson(response.data);
-      emit(LoginSuccess(loginModel.data));
+      // response.data['data']['token'] = UserModel.i.token;
+      UserModel.i.fromJson(response.data['data']);
+      // UserModel.i.fullname = response.data['data']['fullname'] ?? "";
+      UserModel.i.save();
+      emit(LoginSuccess());
     } else {
       emit(LoginFailure(response.msg));
     }

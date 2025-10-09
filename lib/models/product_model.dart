@@ -1,28 +1,29 @@
+import 'package:thimar_app/models/base.dart';
 
 class ProductModel {
-  late final List<Product> data;
+  late final List<Product> products;
   late final int userCartCount;
   late final num maxPrice;
   late final double minPrice;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    data = List.from(json['data']).map((e) => Product.fromJson(e)).toList();
+    products = List.from(json['data']).map((e) => Product.fromJson(e)).toList();
     userCartCount = json['user_cart_count'] ?? 0;
     maxPrice = json['max_price'] ?? 0;
     minPrice = json['min_price'] ?? 0.0;
   }
 }
 
-class Product {
+class Product extends Model {
   late final int categoryId;
-  late final int id;
+
   late final String title;
   late final String description;
   late final String code;
-  late final num priceBeforeDiscount;
-  late final num price;
-  late final num discount;
-  late final num amount;
+  late final double priceBeforeDiscount;
+  late final double price;
+  late final double discount;
+  late final double amount;
   late final int isActive;
   late final bool isFavorite;
   late final Unit unit;
@@ -31,37 +32,36 @@ class Product {
   late final String createdAt;
 
   Product.fromJson(Map<String, dynamic> json) {
-    categoryId = json['category_id'] ?? 0;
-    id = json['id'] ?? 0;
-    title = json['title'] ?? "";
-    description = json['description'] ?? "";
-    code = json['code'] ?? "";
-    priceBeforeDiscount = json['price_before_discount'] ?? 0;
-    price = json['price'] ?? 0;
-    discount = json['discount'] ?? 0.0;
-    amount = json['amount'] ?? 0;
-    isActive = json['is_active'] ?? 0;
-    isFavorite = json['is_favorite'] ?? false;
+    id = stringFromJson(json, 'id');
+    categoryId = intFromJson(json, 'category_id');
+    title = stringFromJson(json, 'title');
+    description = stringFromJson(json, 'description');
+    code = stringFromJson(json, 'code');
+    priceBeforeDiscount = doubleFromJson(json, 'price_before_discount');
+    price = doubleFromJson(json, 'price');
+    discount = doubleFromJson(json, 'discount');
+    amount = doubleFromJson(json, 'amount');
+    isActive = intFromJson(json, 'is_active');
+    isFavorite = boolFromJson(json, 'is_favorite');
     unit = Unit.fromJson(json['unit'] ?? {});
-    images = List.from(json['images'] ?? []).map((e) => Images.fromJson(e)).toList();
-    mainImage = json['main_image'] ?? "";
-    createdAt = json['created_at'] ?? "";
+    images = listFromJson(json, 'images', callback: Images.fromJson);
+    mainImage = stringFromJson(json, 'main_image');
+    createdAt = stringFromJson(json, 'created_at');
   }
 }
 
-class Unit {
-  late final int id;
+class Unit extends Model {
   late final String name;
   late final String type;
   late final String createdAt;
   late final String updatedAt;
 
   Unit.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? 0;
-    name = json['name'] ?? "";
-    type = json['type'] ?? "";
-    createdAt = json['created_at'] ?? "";
-    updatedAt = json['updated_at'] ?? "";
+    id = stringFromJson(json, 'id');
+    name = stringFromJson(json, 'name');
+    type = stringFromJson(json, 'type');
+    createdAt = stringFromJson(json, 'created_at');
+    updatedAt = stringFromJson(json, 'updated_at');
   }
 }
 
@@ -74,5 +74,3 @@ class Images {
     url = json['url'] ?? "";
   }
 }
-
-

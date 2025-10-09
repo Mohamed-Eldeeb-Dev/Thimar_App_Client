@@ -6,10 +6,10 @@ import 'package:thimar_app/core/routes/app_routes.dart';
 import 'package:thimar_app/core/routes/app_routes_fun.dart';
 import 'package:thimar_app/core/utils/app_theme.dart';
 
-late SharedPreferences prefs;
-void main()  async {
+late SharedPreferences Prefs;
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
+  Prefs = await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           builder: (context, child) {
-            return Directionality(textDirection: TextDirection.rtl, child: child!);
+            return Directionality(
+              textDirection: TextDirection.rtl,
+              child: child!,
+            );
           },
           title: 'Thimar',
           themeMode: ThemeMode.light,

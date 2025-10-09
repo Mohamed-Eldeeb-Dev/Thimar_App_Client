@@ -1,17 +1,14 @@
+import 'package:thimar_app/models/base.dart';
 
-
-
-class CategoryModel {
-  late final int id;
+class CategoryModel extends Model {
   late final String name;
   late final String description;
   late final String media;
 
-  
-  CategoryModel.fromJson(Map<String, dynamic> json){
-    id = json['id'] ?? 0;
-    name = json['name'] ?? "";
-    description = json['description'] ?? "";
-    media = json['media'] ?? "";
+  CategoryModel.fromJson(Map<String, dynamic> json) {
+    id = stringFromJson(json, 'id');
+    name = stringFromJson(json, 'name');
+    description = stringFromJson(json, 'description');
+    media = stringFromJson(json, 'media');
   }
 }

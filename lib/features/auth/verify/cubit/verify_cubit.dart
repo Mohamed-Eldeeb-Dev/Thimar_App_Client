@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:thimar_app/core/services/server_gate.dart';
+import 'package:thimar_app/models/user_model.dart';
 
 part 'verify_state.dart';
 
@@ -21,6 +22,8 @@ class VerifyCubit extends Cubit<VerifyState> {
       },
     );
     if (response.success) {
+      UserModel.i.fromJson(response.data['data']);
+      UserModel.i.save();
       emit(VerifySuccess());
     } else {
       emit(VerifyFailure(response.msg));
